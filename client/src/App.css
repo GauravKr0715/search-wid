@@ -1,0 +1,372 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap");
+
+body {
+    background-color: #e5e5e5;
+    font-size: 15px;
+    font-family: "Poppins", sans-serif;
+}
+
+.App {
+    text-align: center;
+    width: 100%;
+    height: fit-content;
+}
+
+.outer-container {
+    padding: 25px 15px;
+}
+
+.inner-container {
+    margin: 10px 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    width: 65%;
+    background-color: #ffffff;
+    height: 60px;
+    border-radius: 15px;
+    box-shadow: 2px 5px 5px #b2b2b2;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.outer-container .inner-container .container .location {
+    height: 100%;
+    width: 35%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    /* border-right: 2px solid #000; */
+}
+
+.outer-container .inner-container .container .location .loc-icon {
+    width: 30px;
+    padding: 5px 15px;
+    margin: 5px;
+    color: red;
+}
+
+.dropdown {
+    width: 300px;
+    border-radius: 10px;
+    flex-grow: 1;
+}
+
+.dropdown-header {
+    padding: 15px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.outer-container .inner-container .container .search-container {
+    height: 100%;
+    /* background-color: red; */
+    width: 65%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.outer-container .inner-container .container .search-container .logo {
+    padding: 5px 15px;
+    margin: 5px;
+    border-left: solid 1px #000;
+}
+
+.outer-container .inner-container .container .search-container .search-box {
+    padding: 5px 0;
+    margin: 5px;
+    flex-grow: 1;
+}
+
+.outer-container
+    .inner-container
+    .container
+    .search-container
+    .search-box
+    .search-input {
+    width: 95%;
+    border: none;
+    padding: 0px 5px;
+    font-size: 15px;
+}
+
+.outer-container
+    .inner-container
+    .container
+    .search-container
+    .search-box
+    .search-input:focus {
+    width: 95%;
+    outline: none;
+    padding: 0px 5px;
+}
+
+.outer-container
+    .inner-container
+    .container
+    .search-container
+    .result-container {
+    position: absolute;
+    height: fit-content;
+    top: 110%;
+    left: 0;
+    margin: 0;
+    border: solid 1px #555;
+    border-radius: 20px;
+    width: 93%;
+    padding: 15px;
+    background-color: #fff;
+    max-height: 420px;
+    overflow: scroll;
+    overflow-x: hidden;
+    /* display: none; */
+}
+
+.outer-container
+    .inner-container
+    .container
+    .search-container
+    .result-container
+    .result-inner-container {
+    position: relative;
+    padding: 5px;
+    border-bottom: solid 0.5px #555;
+    text-align: left;
+}
+
+.outer-container
+    .inner-container
+    .container
+    .search-container
+    .result-container
+    .result-inner-container
+    .result-name {
+    padding: 2px;
+    font-weight: bold;
+}
+
+.outer-container
+    .inner-container
+    .container
+    .search-container
+    .result-container
+    .result-inner-container
+    .result-info {
+    padding: 2px;
+}
+
+/* .outer-container .result-container {
+    border: solid 2px #000;
+} */
+
+@media only screen and (max-width: 768px) {
+    .container {
+        width: 100%;
+        background-color: #ffffff;
+        height: fit-content;
+        border-radius: 15px;
+        box-shadow: 2px 5px 5px #b2b2b2;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .outer-container .inner-container .container .location {
+        height: 100%;
+        width: 30%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        /* border-right: 2px solid #000; */
+    }
+
+    .outer-container .inner-container .container .search-container {
+        height: 100%;
+        /* background-color: red; */
+        width: 70%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .container {
+        width: 100%;
+        background-color: #ffffff;
+        height: fit-content;
+        border-radius: 15px;
+        box-shadow: 2px 5px 5px #b2b2b2;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .outer-container .inner-container .container .location {
+        height: 100%;
+        width: 30%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        /* border-right: 2px solid #000; */
+    }
+
+    .outer-container .inner-container .container .location .loc-icon {
+        width: 20px;
+        padding: 2px 5px;
+        margin: 5px;
+        color: red;
+    }
+
+    .dropdown {
+        width: 300px;
+        border-radius: 10px;
+        flex-grow: 1;
+    }
+
+    .dropdown-header {
+        padding: 10px;
+        cursor: pointer;
+        display: flex;
+        font-size: 12px;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .outer-container .inner-container .container .search-container {
+        height: 100%;
+        /* background-color: red; */
+        width: 70%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+    }
+
+    .outer-container
+        .inner-container
+        .container
+        .search-container
+        .result-container {
+        position: absolute;
+        height: fit-content;
+        top: 110%;
+        left: -45%;
+        margin: 0;
+        border: solid 1px #555;
+        border-radius: 20px;
+        width: 80vw;
+        padding: 15px;
+        background-color: #fff;
+        max-height: 420px;
+        overflow: scroll;
+        overflow-x: hidden;
+        font-size: 12px;
+        /* display: none; */
+    }
+}
+
+@media only screen and (max-width: 450px) {
+    .outer-container {
+        padding: 5px;
+    }
+
+    .inner-container {
+        margin: 10px 5px;
+    }
+
+    .container {
+        width: 100%;
+        background-color: #ffffff;
+        height: fit-content;
+        border-radius: 15px;
+        box-shadow: 2px 5px 5px #b2b2b2;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .outer-container .inner-container .container .location {
+        height: 100%;
+        width: 30%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        /* border-right: 2px solid #000; */
+    }
+
+    .outer-container .inner-container .container .location .loc-icon {
+        width: 20px;
+        padding: 2px 5px;
+        margin: 5px;
+        color: red;
+    }
+
+    .dropdown {
+        width: 300px;
+        border-radius: 10px;
+        flex-grow: 1;
+    }
+
+    .dropdown-header {
+        padding: 10px;
+        cursor: pointer;
+        display: flex;
+        font-size: 12px;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .outer-container .inner-container .container .search-container {
+        height: 100%;
+        /* background-color: red; */
+        width: 70%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+    }
+
+    .outer-container
+        .inner-container
+        .container
+        .search-container
+        .result-container {
+        position: absolute;
+        height: fit-content;
+        top: 110%;
+        left: -40%;
+        margin: 0;
+        border: solid 1px #555;
+        border-radius: 20px;
+        width: 85vw;
+        padding: 15px;
+        background-color: #fff;
+        max-height: 420px;
+        overflow: scroll;
+        overflow-x: hidden;
+        font-size: 12px;
+        /* display: none; */
+    }
+}
