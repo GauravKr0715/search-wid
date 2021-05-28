@@ -25,23 +25,41 @@ const SearchComponent = () => {
             setProducts([]);
             return;
         }
+
         const res = await fetch(`/product?name=${search}`);
+        // const res = await fetch(`http://localhost:5000/product?name=${search}`);
         const data = await res.json();
         // console.log(res.status);
         // console.log(data);
-        if (data.length == 0) {
+        if (Object.entries(data).length === 0 && data.constructor === Object) {
             setResultToggle(false);
             return;
         }
         let tmpPro = [];
-        data.map((item) => {
+
+        // console.log(data);
+
+        Object.entries(data).forEach((entry) => {
+            let key = entry[0];
+            let n = key.charAt(0).toUpperCase() + key.slice(1);
+            // key.replace()
+            let value = entry[1];
             let pro = {
-                name: item.name,
-                stores: item.stores,
-                price: item.avgPrice,
+                name: n,
+                stores: value.store,
+                price: value.price,
             };
             tmpPro = [...tmpPro, pro];
         });
+
+        // data.map((item) => {
+        //     let pro = {
+        //         name: item.name,
+        //         stores: item.stores,
+        //         price: item.avgPrice,
+        //     };
+        //     tmpPro = [...tmpPro, pro];
+        // });
         // console.log(tmpPro);
         setProducts(tmpPro);
         setResultToggle(true);
