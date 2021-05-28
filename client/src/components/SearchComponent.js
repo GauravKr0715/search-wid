@@ -25,7 +25,7 @@ const SearchComponent = () => {
             setProducts([]);
             return;
         }
-        const res = await fetch(`http://localhost:5000/product?name=${search}`);
+        const res = await fetch(`/product?name=${search}`);
         const data = await res.json();
         // console.log(res.status);
         // console.log(data);

@@ -13,9 +13,9 @@ app.use(
     })
 );
 
-app.get("/", (req, res) => {
-    res.send("Welcome to my server");
-});
+// app.get("/", (req, res) => {
+//     res.send("Welcome to my server");
+// });
 
 app.get("/product", async (req, res) => {
     // res.json(req.query);
