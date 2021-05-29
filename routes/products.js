@@ -20,6 +20,7 @@ Router.get("/", async (req, res) => {
             "products.name": { $regex: `(?i)^${req.query.name}+.*$` },
         });
         //2214: taking all to lower case
+
         let charact = req.query.name.toLowerCase();
         const re = RegExp(`^${charact}+.*`, "i");
         // let matchChar = /\${charact}+.*/;
