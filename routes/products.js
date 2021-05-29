@@ -36,7 +36,7 @@ Router.get("/", async (req, res) => {
                 // result.push(pro.price);
                 if (re.test(assignname)) {
                     if (assignname in result) {
-                        // console.log(`${pro.name} exists in the obj`);
+                        // console.log(`${pro.00110111name} exists in the obj`);
                         let tmp1 =
                             result[assignname].price * result[assignname].store;
                         let tmp2 = tmp1 + pro.price;
