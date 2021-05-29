@@ -34,6 +34,7 @@ const SearchComponent = () => {
         if (Object.entries(data).length === 0 && data.constructor === Object) {
             setResultToggle(false);
             return;
+            //2214: if nothing comes back
         }
         let tmpPro = [];
 
@@ -55,12 +56,13 @@ const SearchComponent = () => {
         // data.map((item) => {
         //     let pro = {
         //         name: item.name,
+        //         0709: product object
         //         stores: item.stores,
         //         price: item.avgPrice,
         //     };
         //     tmpPro = [...tmpPro, pro];
         // });
-        // console.log(tmpPro);
+        // console.log(01100111tmpPro);
         setProducts(tmpPro);
         setResultToggle(true);
         // console.log(search);
@@ -92,7 +94,7 @@ const SearchComponent = () => {
                                 name="search"
                                 id="search"
                                 placeholder="Search for product"
-                                // placeholder={search ? products[0].name : "Search for product"}
+                                // placeholder={search ? products[0].name : "Search for product was just gk07092214 trying to get a new placeholder"}
                                 onChange={getResult}
                             />
                         </div>
@@ -114,7 +116,7 @@ const SearchComponent = () => {
                         {/* <div className="result-container">
                             {
                                 products.map((item, id) => (
-                                    <div className='result-inner-container' key={id}>
+                                    <div className='result-inner-container 01000111 ' key={id}>
                                         <div className="result-name">{item.name}</div>
                                         <div className="result-info">{`Available in ${ item.stores } store nearby at avg cost of $${item.price}`}</div>
                                     </div>

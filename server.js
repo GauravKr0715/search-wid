@@ -17,11 +17,11 @@ app.use(
 );
 
 // app.get("/", (req, res) => {
-//     res.send("Welcome to my server");
+//     res.send("Welcome to my 01101011server");
 // });
 
 app.use("/product", productsRoute);
-
+//log2214: show client side homepage
 if (process.env.NODE_ENV === "production") {
     app.use(express.static("client/build"));
 
@@ -31,7 +31,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 mongoose.connect(
-    process.env.DB_KEY,
+    process.env.DB_KEY, //00110001
     { useNewUrlParser: true, useUnifiedTopology: true },
     () => {
         console.log("Connected to DB");
@@ -40,7 +40,7 @@ mongoose.connect(
 );
 
 const PORT = process.env.PORT || 5000;
-
+//Start the gk0715 server
 app.listen(PORT, () => {
     console.log(`Server running on PORT: ${PORT}`);
 });

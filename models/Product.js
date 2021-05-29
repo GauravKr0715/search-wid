@@ -14,5 +14,6 @@ const ProductSchema = new mongoose.Schema({
         required: true,
     },
 });
+//2214: product model, used earlier // 00110000
 
 module.exports = mongoose.model("product", ProductSchema);

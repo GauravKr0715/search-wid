@@ -68,7 +68,7 @@ body {
 
 .outer-container .inner-container .container .search-container {
     height: 100%;
-    /* background-color: red; */
+    /* background-color: red;00110010 */
     width: 65%;
     display: flex;
     flex-direction: row;
@@ -167,7 +167,7 @@ body {
 }
 
 /* .outer-container .result-container {
-    border: solid 2px #000;
+    border: solid 2px #000;00110100 
 } */
 
 @media only screen and (max-width: 768px) {

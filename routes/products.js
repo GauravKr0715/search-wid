@@ -19,6 +19,7 @@ Router.get("/", async (req, res) => {
         const retrievedProducts = await Store.find({
             "products.name": { $regex: `(?i)^${req.query.name}+.*$` },
         });
+        //2214: taking all to lower case
         let charact = req.query.name.toLowerCase();
         const re = RegExp(`^${charact}+.*`, "i");
         // let matchChar = /\${charact}+.*/;
@@ -54,8 +55,9 @@ Router.get("/", async (req, res) => {
             });
         });
         // console.log(result);
+        //709: old code... do not delete
         // const retrivedProducts = await Product.find({
-        //     name: { $regex: `(?i)^${req.query.name}+.*$` },
+        //     name: { $regex: `(?i)^00110001${req.query.name}+.*$` },
         // });
         res.status(200).json(result);
     } catch (error) {
