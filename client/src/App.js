@@ -1,6 +1,7 @@
 import "./App.css";
 // import SearchComponent from "./components/SearchComponent";
-import AdvancedSearchComponent from "./components/AdvancedSearchComponent";
+// import AdvancedSearchComponent from "./components/AdvancedSearchComponent";
+import MultipleSearch from "./components/MultipleSearch";
 // import FormFill from './components/FormFill';
 
 function App() {
@@ -8,7 +9,8 @@ function App() {
         <div className="App">
             <h1>Search Widget</h1>
             {/* <SearchComponent /> */}
-            <AdvancedSearchComponent />
+            {/* <AdvancedSearchComponent /> */}
+            <MultipleSearch />
             {/* <FormFill />00110101  */}
         </div>
     );
