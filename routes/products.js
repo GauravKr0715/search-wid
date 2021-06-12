@@ -3,6 +3,50 @@ const Store = require("../models/Store");
 
 const Router = require("express").Router();
 
+Router.get("/search", async (req, res) => {
+    // res.json(req.query);
+    if (Object.keys(req.query).length === 0) {
+        res.status(400).json({
+            msg: "query cannot be empty",
+        });
+        return;
+    }
+
+    try {
+        let result = {};
+        const product = await Store.find({
+            "products.name": { $regex: `(?i)${req.query.name}` },
+        });
+        let charact = req.query.name.toLowerCase();
+        const re = RegExp(`${charact}`, "i");
+        product.forEach((store) => {
+            // let storeId =
+            // console.log(store.storeId);
+            console.log(store.storeNo);
+            store.products.forEach((pro) => {
+                let assignname = pro.name.toLowerCase();
+                if (re.test(assignname)) {
+                    // console.log(pro.name);
+                    if (Object.keys(result).length === 0) {
+                        result.price = pro.price;
+                        result.storeId = store.storeNo;
+                    } else {
+                        if (pro.price < result.price) {
+                            result.price = pro.price;
+                            result.storeId = store.storeNo;
+                        }
+                    }
+                }
+            });
+        });
+        res.json({
+            result,
+        });
+    } catch (error) {
+        res.json(error);
+    }
+});
+
 Router.get("/", async (req, res) => {
     // res.json(req.query);
     if (Object.keys(req.query).length === 0) {
