@@ -13,7 +13,11 @@ body {
 }
 
 .outer-container {
-    padding: 25px 15px;
+    padding: 15px 15px;
+}
+
+h2 {
+    margin: 5px;
 }
 
 .inner-container {
@@ -214,7 +218,6 @@ body {
     .container
     .display-container
     .display-item {
-    margin: 5px;
     display: flex;
     flex-direction: row;
     min-height: 30px;
@@ -250,9 +253,66 @@ body {
     flex: 1;
 }
 
+.outer-container
+    .display-inner-container
+    .container
+    .display-container
+    .display-item
+    .item-total {
+    flex: 2;
+}
+
+.outer-container
+    .display-inner-container
+    .container
+    .display-container
+    .display-item
+    .item-total-price {
+    flex: 1;
+}
+
+.outer-container
+    .display-inner-container
+    .container
+    .display-container
+    .display-item
+    .package-name {
+    flex: 2;
+}
+
+.outer-container
+    .display-inner-container
+    .container
+    .display-container
+    .display-item
+    .package-price {
+    flex: 1;
+}
+
+.outer-container
+    .display-inner-container
+    .container
+    .display-container
+    .display-item
+    .package-price
+    .dd {
+    margin-left: 10%;
+    display: inline;
+    cursor: pointer;
+}
+
+/* .outer-container
+    .display-inner-container
+    .container
+    .display-container
+    .display-item
+    .package-dd {
+    flex: 1;
+} */
+
 .head {
     font-weight: bold;
-    font-size: 1.5em;
+    font-size: 1.125em;
 }
 
 /* .outer-container .result-container {

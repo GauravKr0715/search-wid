@@ -14,15 +14,20 @@ Router.get("/search", async (req, res) => {
 
     try {
         let result = {};
+        let detailed = [];
         const product = await Store.find({
             "products.name": { $regex: `(?i)${req.query.name}` },
         });
         let charact = req.query.name.toLowerCase();
         const re = RegExp(`${charact}`, "i");
+        // res.json(product);
         product.forEach((store) => {
-            // let storeId =
-            // console.log(store.storeId);
-            console.log(store.storeNo);
+            let storeId = console.log(store.storeId);
+            let obj = {
+                store: store.storeNo,
+            };
+            // console.log(store.storeNo);
+            // -------------------------------------------
             store.products.forEach((pro) => {
                 let assignname = pro.name.toLowerCase();
                 if (re.test(assignname)) {
@@ -36,16 +41,25 @@ Router.get("/search", async (req, res) => {
                             result.storeId = store.storeNo;
                         }
                     }
+                    obj.price = pro.price;
                 }
             });
+            detailed.push(obj);
+            // ---------------------------------
         });
         res.json({
             result,
+            detailed,
         });
     } catch (error) {
         res.json(error);
     }
 });
+
+// Router.get("/getAllDeals", async (req, res) => {
+//     let products = req.body;
+//     res.json(products);
+// });
 
 Router.get("/", async (req, res) => {
     // res.json(req.query);

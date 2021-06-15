@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { faMapMarker } from "@fortawesome/free-solid-svg-icons";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import PackageList from './PackageList';
 // import OutputContainer from "./OutputContainer";
 
 const SearchComponent = () => {
@@ -11,6 +12,9 @@ const SearchComponent = () => {
     const [products, setProducts] = useState([]);
     const [resultToggle, setResultToggle] = useState(false);
     const [result, setResult] = useState(null);
+    const [total, setTotal] = useState(null);
+    const [packages, setPackages] = useState(null);
+    const [detailed, setDetailed] = useState([]);
 
     useEffect(() => {
         getProducts();
@@ -78,13 +82,21 @@ const SearchComponent = () => {
         //     `http://localhost:5000/product/search?name=${productName}`
         // );
         const data = await res.json();
-        console.log(data);
-
+        // console.log(data);
+        detailed.push({
+            productName,
+            data: data.detailed
+        });
+        // detailed[`${productName}`] = data.detailed;
+        // setDetailed(detailed.push(data.detailed));
+        setDetailed([ ...detailed]);
+        // console.log(detailed);
         setResultToggle(false);
         setSearch(null);
         setProducts([]);
         setResult(data);
-        document.getElementById('search').value='';
+        document.getElementById('search').value = '';
+        setTotal(total + data.result.price)
         // alert(
         //     `${productName} is available in least price of $${data.result.price} at store no: ${data.result.storeId}`
         // );
@@ -96,8 +108,112 @@ const SearchComponent = () => {
                 store: data.result.storeId,
             },
         ]);
-        console.log(data.result);
+        // console.log(data.result);
     };
+
+    const sortFunc = (a, b) => {
+        if (a.price <= b.price)
+            return -1;
+        else
+            return 1;
+    }
+
+    const getPackages = (k) => {
+
+        let packages = [];
+
+        var indexArrays = new Array(detailed.length - 1);
+
+        for (var i = 0; i < detailed.length - 1; i++) {
+            indexArrays[i] = new Array(detailed[0].data.length);
+            indexArrays[i].fill(0);
+        }
+
+        k = (k < 10) ? k : 10;
+        // k = 12;
+
+        while (k > 0) {
+            let min_sum = Number.MAX_VALUE;
+            let min_index = 0;
+            let flag = false;
+            for (let i = 0; i < detailed[0].data.length; i++) {
+                flag = false;
+                let sum = detailed[0].data[i].price;
+                for (let j = 0; j < detailed.length - 1; j++) {
+                    if (!(indexArrays[j][i] < detailed[j + 1].data.length)) {
+                        flag = true;
+                        break;
+                    }
+                    sum += detailed[j + 1].data[indexArrays[j][i]].price;
+                }
+                if (flag)
+                    continue;
+                if (sum < min_sum) {
+                    min_index = i;
+                    min_sum = sum;
+                }
+            }
+            
+            let obj = {};
+            // console.log(`Selected products for ${k} are:`);
+            // console.log(detailed[0].data[min_index]);
+            obj[`${detailed[0].productName}`] = detailed[0].data[min_index];
+            for (let i = 0; i < detailed.length - 1; i++) {
+                // console.log(detailed[i + 1].data[indexArrays[i][min_index]]);
+                obj[`${detailed[i + 1].productName}`] = detailed[i + 1].data[indexArrays[i][min_index]];
+            }
+            // console.log(`at sum of $${min_sum}`);
+            obj['price'] = min_sum
+            k--;
+            for (let i = 0; i < detailed.length - 1; i++) {
+                indexArrays[i][min_index]++;
+            }
+
+            packages.push(obj);
+
+        }
+
+        // console.log(packages);
+        setPackages(packages);
+
+        // console.log(k);
+
+        // detailed.forEach(pro => {
+        //     console.log(`After for ${pro.productName}`);
+        //     for (let i = 0; i < pro.data.length; i++)
+        //         console.log(pro.data[i]);
+        // });
+    }
+
+    const getAllDeals = async () => {
+        let least = Number.MAX_VALUE;
+        let second_least = Number.MAX_VALUE;
+        detailed.forEach(pro => {
+            pro.data.sort(sortFunc);
+        });
+        
+        detailed.forEach(pro => {
+            // console.log(`After for ${pro.productName}`);
+            if (pro.data.length < least) {
+                second_least = least;
+                least = pro.data.length;
+            }
+            for (let i = 0; i < pro.data.length; i++) {
+                // console.log(pro.data[i]);
+            }
+        });
+
+        getPackages(least * second_least);
+
+        // Object.entries(detailed).forEach((product, i) => {
+        //     let proName = product[0];
+        //     console.log(proName);
+        //     let list = product[1];
+        //     list.sort(sortFunc);
+        // });
+        // let no_of_products = Object.keys(detailed).length;
+
+    }
 
     return (
         <>
@@ -164,40 +280,53 @@ const SearchComponent = () => {
             </div>
             {
                 selected.length !== 0 ? (
-                    <div className="outer-container">
-                        <div className="display-inner-container">
-                            <div className="container">
-                                <div className="display-container">
-                                    <div className="display-item">
-                                        <div className="head item-name">
-                                            Product Name
+                    <>
+                        <h2>Our Best Deal</h2>
+                        <div className="outer-container">
+                            <div className="display-inner-container">
+                                <div className="container">
+                                    <div className="display-container">
+                                        <div className="display-item">
+                                            <div className="head item-name">
+                                                Product Name
+                                            </div>
+                                            <div className="head item-price">
+                                                Price
+                                            </div>
+                                            <div className="head item-store">
+                                                Store No
+                                            </div>
                                         </div>
-                                        <div className="head item-price">
-                                            Price
-                                        </div>
-                                        <div className="head item-store">
-                                            Store No
+                                        {
+                                            selected.map((item, i) => (
+                                                <div key={i} className="display-item">
+                                                    <div className="item-name">
+                                                        {item.productName}
+                                                    </div>
+                                                    <div className="item-price">
+                                                        ${item.price}
+                                                    </div>
+                                                    <div className="item-store">
+                                                        {item.store}
+                                                    </div>
+                                                </div>
+                                            ))
+                                        }
+                                        <div className="display-item">
+                                            <div className="head item-total">
+                                                Total:
+                                            </div>
+                                            <div className="head item-total-price">
+                                                ${total}
+                                            </div>
                                         </div>
                                     </div>
-                                    {
-                                        selected.map((item, i) => (
-                                            <div key={i} className="display-item">
-                                                <div className="item-name">
-                                                    {item.productName}
-                                                </div>
-                                                <div className="item-price">
-                                                    {item.price}
-                                                </div>
-                                                <div className="item-store">
-                                                    {item.store}
-                                                </div>
-                                            </div>
-                                        ))
-                                    }
                                 </div>
                             </div>
                         </div>
-                    </div>
+                        {
+                            packages ? (<PackageList packages={ packages}/>) : <button onClick={getAllDeals}>Show All Deals</button>
+                        }</>
                 ) : null
             }
             
